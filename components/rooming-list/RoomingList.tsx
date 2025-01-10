@@ -20,7 +20,7 @@ export type RoomingListProps = {
     setSelection: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
-export function processCombination(combination:number[]) : Combination[] {
+export function processCombination(combination:number[]) : Combination {
     const roomCombosDictionary : { [key : number] : Combination} = {}
 
     for (let index = 0; index < combination.length; index++) {
@@ -92,7 +92,8 @@ export function processCombination(combination:number[]) : Combination[] {
         populateComboWithValue(value, combo);  
     }
     
-    return [combo]    
+    
+    return combo    
 }
 
 function populateComboWithValue(value: Combination, combo: Combination) {
@@ -120,7 +121,7 @@ export function calculateRoomCombinations(candidates: number[], target: number) 
         if (remainingTarget == 0) {
             // no more people to house, so our combination is complete
             let roomCombination = processCombination(combination)
-            result = result.concat(roomCombination)
+            result.push(roomCombination)
             return
         }
         
