@@ -38,7 +38,7 @@ it("assign combination correctly from number array.", async () => {
     let value1 = processCombination([1])
     let value3 = processCombination([3])
 
-    expect(value0[0]).toEqual({})
-    expect(value1[0].S).toEqual(1)
-    expect(value3[0].F).toEqual(1)
+    expect(value0.S).toBeUndefined()
+    expect(value1.S).toEqual(1)
+    expect(value3.F).toEqual(1)
 });

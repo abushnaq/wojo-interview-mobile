@@ -21,32 +21,24 @@ export type RoomingListProps = {
 };
 
 export function processCombination(combination:number[]) : Combination {
-    const roomCombosDictionary : { [key : number] : Combination} = {}
-
+    let currentCount : Combination = {}
     for (let index = 0; index < combination.length; index++) {
-        let currentCount = roomCombosDictionary[combination[index]]
-
         switch (combination[index]) {
             case 1:
-                if (currentCount === undefined)
+                if (currentCount.S === undefined)
                 {
-                    currentCount = {}
                     currentCount.S = 1    
-                    roomCombosDictionary[combination[index]] = currentCount
-                    break
-                } else 
+                } 
+                else 
                 {
                     currentCount.S += 1
                 }
                 break;
             case 2:
                 
-                if (currentCount === undefined)
+                if (currentCount.D === undefined)
                 {
-                    currentCount = {}
                     currentCount.D = 1    
-                    roomCombosDictionary[combination[index]] = currentCount
-                    break
                 }
                 else
                 {
@@ -54,12 +46,9 @@ export function processCombination(combination:number[]) : Combination {
                 }
                 break;
             case 3:
-                if (currentCount === undefined)
+                if (currentCount.F === undefined)
                 {
-                    currentCount = {}
                     currentCount.F = 1    
-                    roomCombosDictionary[combination[index]] = currentCount
-                    break
                 }
                 else
                 {
@@ -67,12 +56,9 @@ export function processCombination(combination:number[]) : Combination {
                 }
                 break;
             case 4:
-                if (currentCount === undefined)
+                if (currentCount.Q === undefined)
                 {
-                    currentCount = {}
-                    currentCount.Q = 1    
-                    roomCombosDictionary[combination[index]] = currentCount
-                    break
+                    currentCount.Q = 1
                 }
                 else
                 {
@@ -84,16 +70,7 @@ export function processCombination(combination:number[]) : Combination {
         }
     }
 
-    let values = Object.values(roomCombosDictionary)
-    let combo : Combination = {};
-
-    for (let value of values)
-    {
-        populateComboWithValue(value, combo);  
-    }
-    
-    
-    return combo    
+    return currentCount
 }
 
 function populateComboWithValue(value: Combination, combo: Combination) {
